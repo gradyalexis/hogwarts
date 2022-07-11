@@ -15,4 +15,10 @@ export default defineNuxtConfig({
   css: [
     "~/assets/css/tailwind.css"
   ],
+  runtimeConfig: {
+    secret: '',
+    public: {
+      baseUrl: process.env.API_BASE_URL
+    }
+  }
 })
