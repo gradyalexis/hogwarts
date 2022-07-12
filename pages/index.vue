@@ -19,7 +19,7 @@
             {{ item.name }}
           </div>
           <div class="text-gray-200">
-            {{ item.gender }}
+            {{ item.actor }}
           </div>
         </div>
       </Card>
