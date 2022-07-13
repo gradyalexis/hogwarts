@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.responsive-layout {
+  @apply h-auto lg:mx-auto max-w-screen-2xl;
+}
