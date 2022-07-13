@@ -1,15 +1,13 @@
 <template>
   <div class="grid grid-cols-6 gap-8">
     <Card v-for="item in items" :key="item">
-      <img
+      <LazyImage
         v-if="item.image"
-        class="absolute w-full h-full object-cover"
         :src="item.image"
         :alt="item.name"
       />
-      <img
+      <LazyImage
         v-else
-        class="absolute w-full h-full object-cover"
         :src="`/assets/img/${item.gender === 'male' ? 'male-image.jpg' : 'female-image.jpg'}`"
         alt="hogwarts-image-profile-placeholder"
       />
@@ -17,7 +15,7 @@
         <div class="text-white font-bold">
           {{ item.name }}
         </div>
-        <div class="text-gray-200">
+        <div v-if="item.actor" class="text-gray-200">
           {{ item.actor }}
         </div>
       </div>
@@ -27,6 +25,11 @@
 
 <script lang="ts">
 export default defineComponent({
+  components: {
+    LazyImage: defineAsyncComponent({
+      loader: () => import('~/components/Image.vue')
+    })
+  },
   async setup() {
     const items = await useBaseFetch('/characters').then(
       ({ data }) => data
